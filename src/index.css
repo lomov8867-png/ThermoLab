@@ -1,0 +1,288 @@
+@import "tailwindcss";
+
+/* ───────────────────────────────────────────────────
+   ThermoLab — Argon Glassmorphic Design System
+   Milestone 3: Visual Identity & Sharp Glassmorphism
+   ─────────────────────────────────────────────────── */
+
+:root {
+  /* Argon Spectrum & Obsidian Surface Tokens */
+  --color-argon-void: #02050e;
+  --color-argon-base: #040817;
+
+  /* Authentic Glassmorphism Surface Tokens (Milestone 3.1) */
+  --glass-bg: rgba(8, 16, 35, 0.58);
+  --glass-bg-subtle: rgba(6, 12, 28, 0.45);
+  --glass-bg-dark: rgba(4, 10, 25, 0.75);
+  --glass-border: rgba(160, 195, 235, 0.22);
+  --glass-border-subtle: rgba(160, 195, 235, 0.15);
+  --glass-border-bright: rgba(115, 190, 255, 0.55);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.38), inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+
+  /* Hover State Tokens: Darken Background + Brighten Border + Glow */
+  --glass-hover-bg: rgba(4, 10, 25, 0.88);
+  --glass-hover-border: rgba(115, 190, 255, 0.55);
+  --glass-hover-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.65), 0 0 14px 0 rgba(105, 185, 255, 0.25);
+  --glass-text-glow: 0 0 8px rgba(105, 185, 255, 0.35);
+  --glass-text-glow-cyan: 0 0 8px rgba(34, 211, 238, 0.45);
+  --glass-text-glow-amber: 0 0 8px rgba(251, 191, 36, 0.45);
+
+  /* Precision Spectral Line Accents */
+  --color-argon-violet: #8b5cf6;
+  --color-argon-indigo: #6366f1;
+  --color-argon-blue: #3b82f6;
+  --color-argon-cyan: #06b6d4;
+  --color-argon-cyan-bright: #22d3ee;
+  --color-argon-orange: #f97316;
+
+  /* Typography */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
+
+  /* Strict Zero-Radius Design Token */
+  --radius-sharp: 0px;
+}
+
+/* Base resets */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  border-radius: 0 !important; /* Enforces strict sharp rectangular architecture */
+}
+
+html {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--color-argon-void);
+  color: #e2e8f0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-argon-void);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+}
+
+/* ─── Reusable Sharp Glassmorphism Utilities ───────── */
+
+/* Standard static sharp glass panel: translucent frosted glass */
+.argon-glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: 0 !important;
+  box-shadow: var(--glass-shadow);
+}
+
+/* Nested subpanel within a glass panel */
+.argon-glass-subpanel {
+  background: var(--glass-bg-subtle);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--glass-border-subtle);
+  border-radius: 0 !important;
+}
+
+/* Interactive sharp glass element (buttons, tabs, presets) */
+.argon-glass-interactive {
+  background: var(--glass-bg);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--glass-border);
+  border-radius: 0 !important;
+  color: #cbd5e1;
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    color 180ms ease,
+    text-shadow 180ms ease;
+  cursor: pointer;
+}
+
+.argon-glass-interactive:hover:not(:disabled) {
+  background-color: var(--glass-hover-bg) !important;
+  border-color: var(--glass-hover-border) !important;
+  color: #ffffff !important;
+  box-shadow: var(--glass-hover-shadow);
+  text-shadow: var(--glass-text-glow);
+}
+
+.argon-glass-interactive:active:not(:disabled) {
+  background-color: rgba(2, 6, 16, 0.96) !important;
+}
+
+.argon-glass-interactive:disabled {
+  opacity: 0.35;
+  cursor: not-allowed !important;
+  pointer-events: none;
+}
+
+/* Primary Cyan Action Button (e.g. START/RESUME) */
+.argon-glass-btn-primary {
+  background: rgba(8, 40, 70, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(56, 189, 248, 0.45);
+  color: #e0f2fe;
+  border-radius: 0 !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    color 180ms ease,
+    text-shadow 180ms ease;
+  cursor: pointer;
+}
+
+.argon-glass-btn-primary:hover:not(:disabled) {
+  background-color: rgba(4, 20, 45, 0.92) !important;
+  border-color: rgba(125, 211, 252, 0.8) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.65), 0 0 14px rgba(56, 189, 248, 0.35);
+  text-shadow: 0 0 8px rgba(56, 189, 248, 0.5);
+}
+
+/* Amber Action Button (e.g. PAUSE) */
+.argon-glass-btn-amber {
+  background: rgba(70, 40, 10, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(251, 191, 36, 0.5);
+  color: #fef3c7;
+  border-radius: 0 !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    color 180ms ease,
+    text-shadow 180ms ease;
+  cursor: pointer;
+}
+
+.argon-glass-btn-amber:hover:not(:disabled) {
+  background-color: rgba(45, 20, 4, 0.92) !important;
+  border-color: rgba(252, 211, 77, 0.85) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.65), 0 0 14px rgba(251, 191, 36, 0.35);
+  text-shadow: 0 0 8px rgba(251, 191, 36, 0.5);
+}
+
+/* Sharp input fields with dark hover states, text brightening and cyan focus */
+.argon-glass-input {
+  background: var(--glass-bg-subtle);
+  border: 1px solid var(--glass-border-subtle);
+  border-radius: 0 !important;
+  color: #f8fafc;
+  font-family: var(--font-mono);
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    color 180ms ease,
+    text-shadow 180ms ease;
+}
+
+.argon-glass-input:hover {
+  background-color: var(--glass-hover-bg);
+  border-color: var(--glass-hover-border);
+  color: #ffffff;
+  text-shadow: var(--glass-text-glow);
+}
+
+.argon-glass-input:focus {
+  background-color: rgba(3, 8, 20, 0.95);
+  border-color: var(--color-argon-cyan);
+  box-shadow: 0 0 0 1px rgba(6, 182, 212, 0.5), 0 0 12px rgba(6, 182, 212, 0.25);
+  outline: none;
+  color: #ffffff;
+  text-shadow: var(--glass-text-glow-cyan);
+}
+
+/* Text glow utilities */
+.text-glow {
+  text-shadow: var(--glass-text-glow);
+}
+
+.text-glow-cyan {
+  text-shadow: var(--glass-text-glow-cyan);
+}
+
+.text-glow-amber {
+  text-shadow: var(--glass-text-glow-amber);
+}
+
+/* Keyboard accessibility */
+*:focus-visible {
+  outline: 1px solid var(--glass-hover-border);
+  outline-offset: 1px;
+}
+
+/* Number input — hide browser spin buttons */
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+/* Custom sharp scrollbars */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(2, 5, 14, 0.6);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+/* Scientific reticle header decorative tag */
+.spectral-header-accent {
+  position: relative;
+}
+
+.spectral-header-accent::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 15%;
+  bottom: 15%;
+  width: 2px;
+  background: linear-gradient(180deg, var(--color-argon-cyan) 0%, var(--color-argon-violet) 100%);
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
